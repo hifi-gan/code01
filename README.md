@@ -18,7 +18,7 @@ You can change the path by adding `--checkpoint_path` option.
 
 
 ## Pretrained Model
-[Download](https://drive.google.com/open?id=)
+[Download](https://drive.google.com/file/d/1_Z2X_pKnMBOTQ1Ihk1rbtAhjAAdbf3Mp/view?usp=sharing)
 
 
 ## Inference from wav file

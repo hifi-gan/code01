@@ -45,9 +45,9 @@ def inference(a, h):
     generator.eval()
     generator.remove_weight_norm()
     with torch.no_grad():
-        for i, filename in enumerate(glob.glob(os.path.join(a.input_wavs_dir, "*.wav"))):
-            fname = os.path.split(filename)[-1]
-            wav, sr = load_wav(filename)
+        for i, fpath in enumerate(glob.glob(os.path.join(a.input_wavs_dir, "*.wav"))):
+            filname = os.path.split(fpath)[-1]
+            wav, sr = load_wav(fpath)
             wav = wav / MAX_WAV_VALUE
             wav = torch.FloatTensor(wav).to(device)
             x = get_mel(wav.unsqueeze(0))
@@ -56,7 +56,7 @@ def inference(a, h):
             audio = audio * MAX_WAV_VALUE
             audio = audio.cpu().numpy().astype('int16')
 
-            output_file = os.path.join(a.output_dir, os.path.splitext(fname)[0] + '_generated.wav')
+            output_file = os.path.join(a.output_dir, os.path.splitext(filname)[0] + '_generated.wav')
             write(output_file, h.sampling_rate, audio)
             print(output_file)
 
