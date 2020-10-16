@@ -135,7 +135,7 @@ class MelDataset(torch.utils.data.Dataset):
                     audio_start = random.randint(0, max_audio_start)
                     audio = audio[:, audio_start:audio_start+self.segment_size]
                 else:
-                    audio = torch.nn.functional.pad(audio, (0, 0, 0, self.segment_size - audio.size(1)), 'constant')
+                    audio = torch.nn.functional.pad(audio, (0, self.segment_size - audio.size(1), 0, 0), 'constant')
 
             mel = mel_spectrogram(audio, self.n_fft, self.num_mels,
                                   self.sampling_rate, self.hop_size, self.win_size, self.fmin, self.fmax,
